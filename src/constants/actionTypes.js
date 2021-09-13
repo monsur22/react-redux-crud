@@ -1,4 +1,3 @@
-
-    export const INCREMENT = 'INCREMENT';
-
-    export const DECREMENT = 'DECREMENT';
+export const MODEL_LIST_REQUEST = 'MODEL_LIST_REQUEST'
+export const MODEL_LIST_SUCCESS = 'MODEL_LIST_SUCCESS'
+export const MODEL_LIST_FAIL = 'MODEL_LIST_FAIL'

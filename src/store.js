@@ -1,9 +1,11 @@
 import {createStore, combineReducers, applyMiddleware} from 'redux'
 import thunk  from 'redux-thunk'
 import {composeWithDevTools}  from 'redux-devtools-extension'
-// import { reducers } from './reducers';
+import { postsReducers } from './reducers/postsReducers';
 
-const reducer = combineReducers({})
+const reducer = combineReducers({
+        postList: postsReducers,
+})
 const initialState = {}
 
 const middleware = [thunk]
