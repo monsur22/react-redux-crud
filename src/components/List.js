@@ -18,9 +18,9 @@ const List = () => {
     // const data = useSelector((state) => state.data);
 
     const postList = useSelector(state => state.postList)      //postList comes form store
-    const {error, data} = postList
+    const {error, posts} = postList
     // console.log(postList)
-    useEffect(() => {
+    useEffect( () => {
         // await axios.get("http://localhost:8000/api/model")
         // .then(function(response) {
         //     console.log(response.data);
@@ -71,7 +71,7 @@ const List = () => {
                     </tr>
                 </thead>
                 <tbody>
-                {data && data.map(item => <tr key={item._id}>
+                {posts.map(item => <tr key={item._id}>
                         <td>{item.id}</td>
                         <td>{item.firstName}</td>
                         <td>{item.lastName}</td>
@@ -89,11 +89,7 @@ const List = () => {
 
                 </tbody>
             </table>
-            {/* <Pagination
-                postsPerPage={postsPerPage}
-                totalPosts={data.length}
-                paginate={paginate}
-            /> */}
+
         </div>
     )
 }
