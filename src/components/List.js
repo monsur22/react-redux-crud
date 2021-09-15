@@ -9,7 +9,7 @@ import {
   } from "react-router-dom";
 //   import Pagination from './Pagination';
 import { useDispatch, useSelector } from 'react-redux'
-import {listPosts} from '../actions/postsActions'
+import {listPosts, deletePosts} from '../actions/postsActions'
 
 const List = () => {
     // const [data, setData] = useState([]);
@@ -19,19 +19,15 @@ const List = () => {
 
     const postList = useSelector(state => state.postList)      //postList comes form store
     const {error, posts} = postList
+
+    const postDelete = useSelector(state => state.postDelete)      //postList comes form store
+    const {success: successDelete} = postDelete
+
+
     // console.log(postList)
     useEffect( () => {
-        // await axios.get("http://localhost:8000/api/model")
-        // .then(function(response) {
-        //     console.log(response.data);
-        //     setData(response.data);
-
-        // })
-        // .catch(function(error) {
-        //     console.log(error);
-        // });
         dispatch(listPosts())
-        }, [dispatch]);
+        }, [dispatch, successDelete]);
         // const data = [];
 
         // const getData = async () => {
@@ -41,14 +37,12 @@ const List = () => {
         //         })
         // }
 
-    //     const onDeleteHandler = async(id) => {
-    //         await axios.delete(`http://localhost:8000/api/model/delete/${id}`)
-    //         .then((response) => {
-    //             console.log(response);
-    //             getData();
+    const onDeleteHandler = async(id) => {
+        // if (window.confirm('Are you sure')) {
+            dispatch(deletePosts(id))
+        //   }
 
-    //     })
-    // }
+    }
     const edit = (id) =>{
         console.log(id);
         // history.push("/edit/"+id);
@@ -76,11 +70,13 @@ const List = () => {
                         <td>{item.firstName}</td>
                         <td>{item.lastName}</td>
                         <td>
-                            <img style={{width:100}} src={"http://localhost:8000/image/"+item.img}>
-                                </img></td>
+                            <img style={{width:100}} src={"http://localhost:8000/image/"+item.img}></img>
+                        </td>
 
                         <td>
                             <Link className="edit-link" onClick={() => edit(item.id)}>Edit</Link>
+                            <button size="sm" variant="danger" onClick={() => onDeleteHandler(item.id)}>Delete</button>
+
                         </td>
                     </tr>
                 )}
