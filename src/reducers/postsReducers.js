@@ -1,4 +1,17 @@
-import { MODEL_LIST_REQUEST, MODEL_LIST_SUCCESS,  MODEL_LIST_FAIL, MODEL_DELETE_REQUEST, MODEL_DELETE_SUCCESS, MODEL_DELETE_FAIL } from '../constants/actionTypes';
+import {
+    MODEL_LIST_REQUEST,
+    MODEL_LIST_SUCCESS,
+    MODEL_LIST_FAIL,
+
+    MODEL_DELETE_REQUEST,
+    MODEL_DELETE_SUCCESS,
+    MODEL_DELETE_FAIL,
+
+    MODEL_CREATE_REQUEST,
+    MODEL_CREATE_SUCCESS,
+    MODEL_CREATE_FAIL,
+    MODEL_CREATE_RESET
+ } from '../constants/actionTypes';
 
 
 export const postsReducers = ( state = { posts:[] }, action) => {
@@ -24,6 +37,22 @@ export const postsDeleteReducers = ( state = {}, action) => {
             return { success:true}
         case MODEL_DELETE_FAIL:
             return { error: action.payload}
+        default:
+            return state
+    }
+  }
+
+  export const postsCreateReducers = ( state = {}, action) => {
+
+    switch (action.type) {
+        case MODEL_CREATE_REQUEST:
+            return { }
+        case MODEL_CREATE_SUCCESS:
+            return { success: true, posts: action.payload}
+        case MODEL_CREATE_FAIL:
+            return { error: action.payload}
+        case MODEL_CREATE_RESET:
+            return {  }
         default:
             return state
     }

@@ -2,14 +2,13 @@ import React, { useEffect, useState  } from "react";
 import axios from 'axios';
 import { useHistory } from 'react-router';
 import {
-    BrowserRouter as Router,
-    Switch,
-    Route,
-    Link
-  } from "react-router-dom";
-//   import Pagination from './Pagination';
+        BrowserRouter as Router,
+        Switch,
+        Route,
+        Link
+    } from "react-router-dom";
 import { useDispatch, useSelector } from 'react-redux'
-import {listPosts, deletePosts} from '../actions/postsActions'
+import {listPosts, deletePosts, createPosts} from '../actions/postsActions'
 
 const List = () => {
     // const [data, setData] = useState([]);
@@ -23,7 +22,8 @@ const List = () => {
     const postDelete = useSelector(state => state.postDelete)      //postList comes form store
     const {success: successDelete} = postDelete
 
-
+    const postreate = useSelector(state => state.postCreate)      //postList comes form store
+    const {success: successCreate} = postreate
     // console.log(postList)
     useEffect( () => {
         dispatch(listPosts())
