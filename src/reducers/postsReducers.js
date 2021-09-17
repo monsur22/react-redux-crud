@@ -10,7 +10,12 @@ import {
     MODEL_CREATE_REQUEST,
     MODEL_CREATE_SUCCESS,
     MODEL_CREATE_FAIL,
-    MODEL_CREATE_RESET
+    MODEL_CREATE_RESET,
+
+    MODEL_UPDATE_REQUEST,
+    MODEL_UPDATE_SUCCESS,
+    MODEL_UPDATE_FAIL,
+    MODEL_UPDATE_RESET,
  } from '../constants/actionTypes';
 
 
@@ -53,6 +58,22 @@ export const postsDeleteReducers = ( state = {}, action) => {
             return { error: action.payload}
         case MODEL_CREATE_RESET:
             return {  }
+        default:
+            return state
+    }
+  }
+
+  export const postsUpdateReducers = ( state = {posts:{}}, action) => {
+
+    switch (action.type) {
+        case MODEL_UPDATE_REQUEST:
+            return { }
+        case MODEL_UPDATE_SUCCESS:
+            return { success: true, posts: action.payload}
+        case MODEL_UPDATE_FAIL:
+            return { error: action.payload}
+        case MODEL_UPDATE_RESET:
+            return { posts:{} }
         default:
             return state
     }

@@ -11,7 +11,12 @@ import {
     MODEL_CREATE_REQUEST,
     MODEL_CREATE_SUCCESS,
     MODEL_CREATE_FAIL,
-    MODEL_CREATE_RESET
+    MODEL_CREATE_RESET,
+
+    MODEL_UPDATE_REQUEST,
+    MODEL_UPDATE_SUCCESS,
+    MODEL_UPDATE_FAIL,
+    MODEL_UPDATE_RESET,
 
 } from '../constants/actionTypes';
 
@@ -49,6 +54,20 @@ export const createPosts = (formdata) => async (dispatch) => {
         console.log(data)
     } catch (error) {
         dispatch({ type: MODEL_CREATE_FAIL, payload: error.response && error.response.data.message ? error.response.data.message : error.message})
+
+    }
+}
+
+export const updatePosts = (id,formData) => async (dispatch) => {
+    try {
+        dispatch({ type: MODEL_UPDATE_REQUEST})
+
+        const {data} = await axios.post(`http://localhost:8000/api/model/update/${id}`,formData)
+
+        dispatch({ type: MODEL_UPDATE_SUCCESS, payload: data})
+        console.log(data)
+    } catch (error) {
+        dispatch({ type: MODEL_UPDATE_FAIL, payload: error.response && error.response.data.message ? error.response.data.message : error.message})
 
     }
 }

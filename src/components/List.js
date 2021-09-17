@@ -12,7 +12,7 @@ import {listPosts, deletePosts, createPosts} from '../actions/postsActions'
 
 const List = () => {
     // const [data, setData] = useState([]);
-    // let history = useHistory();
+    let history = useHistory();
     const dispatch = useDispatch()
     // const data = useSelector((state) => state.data);
 
@@ -45,7 +45,7 @@ const List = () => {
     }
     const edit = (id) =>{
         console.log(id);
-        // history.push("/edit/"+id);
+        history.push("/edit/"+id);
     }
 
 
@@ -74,7 +74,8 @@ const List = () => {
                         </td>
 
                         <td>
-                            <Link className="edit-link" onClick={() => edit(item.id)}>Edit</Link>
+                            {/* <Link className="edit-link" onClick={() => edit(item.id)}>Edit</Link> */}
+                            <Link className="edit-link" to={`/edit/`+item.id}>Edit</Link>
                             <button size="sm" variant="danger" onClick={() => onDeleteHandler(item.id)}>Delete</button>
 
                         </td>
